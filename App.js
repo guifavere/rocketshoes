@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 
-const App: () => React$Node = () => {
+const App = () => {
   return (
     <View>
       <Text>Rocket shoes</Text>
