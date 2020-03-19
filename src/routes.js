@@ -10,9 +10,9 @@ const Stack = createStackNavigator();
 export default function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Main" component={Main} />
-        <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Navigator screenOptions={{ header: () => null }}>
+        <Stack.Screen component={Main} name="Main" />
+        <Stack.Screen component={Cart} name="Cart" />
       </Stack.Navigator>
     </NavigationContainer>
   );
