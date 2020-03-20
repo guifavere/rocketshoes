@@ -5,12 +5,21 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Cart from './pages/Cart';
 import Main from './pages/Main';
 
-const Stack = createStackNavigator();
+import Header from './components/Header';
 
 export default function Routes() {
+  const screenOptions = {
+    cardStyle: { backgroundColor: '#19191f' },
+    headerBackTitleVisible: false,
+    header: () => {
+      return <Header />;
+    },
+  };
+  const Stack = createStackNavigator();
+
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ header: () => null }}>
+      <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen component={Main} name="Main" />
         <Stack.Screen component={Cart} name="Cart" />
       </Stack.Navigator>
