@@ -11,9 +11,7 @@ export default function Routes() {
   const screenOptions = {
     cardStyle: { backgroundColor: '#19191f' },
     headerBackTitleVisible: false,
-    header: () => {
-      return <Header />;
-    },
+    header: ({ navigation }) => <Header navigation={navigation} />,
   };
   const Stack = createStackNavigator();
 
