@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
+
+import api from '../../services/api';
 
 import {
   Product,
@@ -12,23 +15,36 @@ import {
 } from './styles';
 
 export default function Main() {
-  const products = [1, 2, 3, 4, 5];
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const response = await api.get('products');
+        const newProducts = response.data.map(product => ({
+          ...product,
+          formattedPrice: 'R$ 50,00',
+        }));
+
+        setProducts(newProducts);
+      } catch (error) {
+        Alert.alert('Error', 'Error during fetching products');
+      }
+    };
+
+    loadProducts();
+  }, []);
 
   return (
     <ProductList
       data={products}
       horizontal
-      keyExtractor={item => item}
-      renderItem={() => (
+      keyExtractor={({ id }) => id}
+      renderItem={({ item: product }) => (
         <Product>
-          <Image
-            source={{
-              uri:
-                'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
-            }}
-          />
-          <Title>Tênis de caminhada leve confortável</Title>
-          <Price>R$ 179,90</Price>
+          <Image source={{ uri: product.image }} />
+          <Title>{product.title}</Title>
+          <Price>{product.formattedPrice}</Price>
           <Button>
             <Quantity>1</Quantity>
             <Label>Adicionar</Label>
