@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
 import api from '../../services/api';
+import { toBRLCurrency } from '../../utils/format';
 
 import {
   Product,
   ProductList,
-  Image,
-  Price,
-  Title,
-  Button,
-  Quantity,
-  Label,
+  ProductImage,
+  ProductPrice,
+  ProductTitle,
+  AddButton,
+  AddButtonBadge,
+  AddButtonText,
 } from './styles';
 
 export default function Main() {
@@ -23,7 +24,7 @@ export default function Main() {
         const response = await api.get('products');
         const newProducts = response.data.map(product => ({
           ...product,
-          formattedPrice: 'R$ 50,00',
+          formattedPrice: toBRLCurrency(product.price),
         }));
 
         setProducts(newProducts);
@@ -42,13 +43,13 @@ export default function Main() {
       keyExtractor={({ id }) => id}
       renderItem={({ item: product }) => (
         <Product>
-          <Image source={{ uri: product.image }} />
-          <Title>{product.title}</Title>
-          <Price>{product.formattedPrice}</Price>
-          <Button>
-            <Quantity>1</Quantity>
-            <Label>Adicionar</Label>
-          </Button>
+          <ProductImage source={{ uri: product.image }} />
+          <ProductTitle>{product.title}</ProductTitle>
+          <ProductPrice>{product.formattedPrice}</ProductPrice>
+          <AddButton>
+            <AddButtonBadge>1</AddButtonBadge>
+            <AddButtonText>Adicionar</AddButtonText>
+          </AddButton>
         </Product>
       )}
     />

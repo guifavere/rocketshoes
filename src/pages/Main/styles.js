@@ -5,7 +5,7 @@ export const ProductList = styled.FlatList`
   margin-top: 20px;
 `;
 
-export const Product = styled.TouchableOpacity`
+export const Product = styled.View`
   background: #fff;
   border-radius: 4px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -15,21 +15,23 @@ export const Product = styled.TouchableOpacity`
   width: 220px;
 `;
 
-export const Image = styled.Image`
+export const ProductImage = styled.Image`
   background: #ececec;
   height: 200px;
   margin-bottom: 10px;
   width: 200px;
 `;
 
-export const Title = styled.Text`
+export const ProductTitle = styled.Text`
   color: #333;
   font-family: Roboto;
   font-size: 16px;
   line-height: 21px;
+  height: 42px;
+  overflow: hidden;
 `;
 
-export const Price = styled.Text`
+export const ProductPrice = styled.Text`
   color: #000;
   font-family: Roboto;
   font-size: 21px;
@@ -38,7 +40,7 @@ export const Price = styled.Text`
   margin: 5px 0 14px;
 `;
 
-export const Button = styled.TouchableOpacity`
+export const AddButton = styled.TouchableOpacity`
   align-items: stretch;
   border-radius: 4px;
   border: 1px solid green;
@@ -46,7 +48,7 @@ export const Button = styled.TouchableOpacity`
   height: 42px;
 `;
 
-export const Quantity = styled.Text`
+export const AddButtonBadge = styled.Text`
   background: ${darken(0.1, '#7159c1')};
   color: #fff;
   line-height: 40px;
@@ -55,7 +57,7 @@ export const Quantity = styled.Text`
   width: 53px;
 `;
 
-export const Label = styled.Text`
+export const AddButtonText = styled.Text`
   background: #7159c1;
   color: #fff;
   flex-grow: 1;
