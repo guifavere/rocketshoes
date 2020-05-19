@@ -24,7 +24,7 @@ export const ProductImage = styled.Image`
 
 export const ProductTitle = styled.Text`
   color: #333;
-  font-family: Roboto;
+  font-family: 'Roboto';
   font-size: 16px;
   line-height: 21px;
   height: 42px;
@@ -33,7 +33,7 @@ export const ProductTitle = styled.Text`
 
 export const ProductPrice = styled.Text`
   color: #000;
-  font-family: Roboto;
+  font-family: 'Roboto';
   font-size: 21px;
   font-weight: bold;
   line-height: 25px;
@@ -61,7 +61,7 @@ export const AddButtonText = styled.Text`
   background: #7159c1;
   color: #fff;
   flex-grow: 1;
-  font-family: Roboto;
+  font-family: 'Roboto';
   font-size: 14px;
   font-weight: bold;
   line-height: 40px;

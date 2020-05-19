@@ -40,7 +40,7 @@ export default function Main() {
     <ProductList
       data={products}
       horizontal
-      keyExtractor={({ id }) => id}
+      keyExtractor={({ id }) => String(id)}
       renderItem={({ item: product }) => (
         <Product>
           <ProductImage source={{ uri: product.image }} />

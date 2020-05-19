@@ -18,8 +18,8 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen component={Main} name="Main" />
         <Stack.Screen component={Cart} name="Cart" />
+        <Stack.Screen component={Main} name="Main" />
       </Stack.Navigator>
     </NavigationContainer>
   );
