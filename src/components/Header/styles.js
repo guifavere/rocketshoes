@@ -12,7 +12,7 @@ export const CartBadge = styled.Text`
   border-radius: 8px;
   color: #fff;
   display: flex;
-  font-family: 'Roboto';
+  font-family: Roboto;
   font-size: 12px;
   height: 16px;
   justify-content: center;
