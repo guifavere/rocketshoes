@@ -10,6 +10,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    __DEV__: true
   },
   parser: 'babel-eslint',
   parserOptions: {
@@ -32,6 +33,8 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-console': ['error', { allow: ['tron'] }],
+    'no-param-reassign': 'off',
   },
 };

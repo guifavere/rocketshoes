@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { toBRLCurrency } from '../../utils/format';
 
 import {
   Amount,
@@ -20,37 +23,38 @@ import {
 } from './styles';
 
 export default function Cart() {
-  const products = [1, 2, 3, 4, 5];
+  const cart = useSelector(state => state.cart);
+  const total = toBRLCurrency(
+    cart.reduce((sumTotal, product) => sumTotal + product.total, 0)
+  );
 
   return (
     <Container>
       <CartItems
-        data={products}
-        keyExtractor={item => String(item)}
-        renderItem={() => (
+        data={cart}
+        keyExtractor={product => String(product.id)}
+        renderItem={({ item: product }) => (
           <CartItem>
             <Product>
-              <ProductImage
-                source={{
-                  uri:
-                    'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-                }}
-              />
+              <ProductImage source={{ uri: product.image }} />
               <ProductDetails>
-                <ProductTitle>Tênis de Caminhada Leve Confortável</ProductTitle>
-                <ProductPrice>R$ 179,90</ProductPrice>
+                <ProductTitle>{product.title}</ProductTitle>
+                <ProductPrice>{product.formattedPrice}</ProductPrice>
               </ProductDetails>
             </Product>
             <Amount>
-              <AmountInput keyboardType="number-pad" value="3" />
-              <Subtotal>R$ 179,90</Subtotal>
+              <AmountInput
+                keyboardType="number-pad"
+                value={String(product.amount)}
+              />
+              <Subtotal>{product.formattedTotal}</Subtotal>
             </Amount>
           </CartItem>
         )}
       />
       <CartDetails>
         <Title>Total</Title>
-        <Total>R$ 1.619,50</Total>
+        <Total>{total}</Total>
       </CartDetails>
       <CheckoutButton>
         <CheckoutButtonText>Finalizar pedido</CheckoutButtonText>

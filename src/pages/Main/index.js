@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Alert } from 'react-native';
 
+import { addToCartRequest } from '../../store/modules/cart/actions';
 import api from '../../services/api';
 import { toBRLCurrency } from '../../utils/format';
 
@@ -17,6 +19,20 @@ import {
 
 export default function Main() {
   const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const amounts = useSelector(state =>
+    state.cart.reduce((sumAmount, product) => {
+      sumAmount[product.id] = product.amount;
+
+      return sumAmount;
+    }, {})
+  );
+
+  function handleAddProduct(id) {
+    return dispatch(addToCartRequest(id));
+  }
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -46,8 +62,8 @@ export default function Main() {
           <ProductImage source={{ uri: product.image }} />
           <ProductTitle>{product.title}</ProductTitle>
           <ProductPrice>{product.formattedPrice}</ProductPrice>
-          <AddButton>
-            <AddButtonBadge>1</AddButtonBadge>
+          <AddButton onPress={() => handleAddProduct(product.id)}>
+            <AddButtonBadge>{amounts[product.id] || 0}</AddButtonBadge>
             <AddButtonText>Adicionar</AddButtonText>
           </AddButton>
         </Product>
