@@ -17,7 +17,7 @@ export default function cart(state = [], action) {
 
         draft[productIndex].amount = action.amount;
         draft[productIndex].total = total;
-        draft[productIndex].formattedTotal = toBRLCurrency(action.amount);
+        draft[productIndex].formattedTotal = toBRLCurrency(total);
       });
     default:
       return state;

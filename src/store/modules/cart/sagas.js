@@ -17,7 +17,6 @@ function* addToCart({ id }) {
 
   if (amount > stockAmount) {
     Alert.alert('Error', 'Product amount requested is out');
-
     return;
   }
 
@@ -39,4 +38,21 @@ function* addToCart({ id }) {
   }
 }
 
-export default all([takeLatest('@cart/ADD_TO_CART_REQUEST', addToCart)]);
+function* updateAmount({ id, amount }) {
+  if (amount <= 0) return;
+
+  const stock = yield call(api.get, `stock/${id}`);
+  const { amount: stockAmount } = stock.data;
+
+  if (amount > stockAmount) {
+    Alert.alert('Error', 'Product amount requested is out');
+    return;
+  }
+
+  yield put(updateAmountSuccess(id, amount));
+}
+
+export default all([
+  takeLatest('@cart/ADD_TO_CART_REQUEST', addToCart),
+  takeLatest('@cart/UPDATE_AMOUNT_REQUEST', updateAmount),
+]);
