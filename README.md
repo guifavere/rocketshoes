@@ -1,5 +1,5 @@
 <div align="center">
-	<img alt="RocketShoes" src="https://i.imgur.com/1um8hbA.png" title="RocketShoes" width="150" />
+	<img alt="RocketShoes" src="https://i.imgur.com/1um8hbA.png" title="RocketShoes" width="350" />
 </div>
 
 <p align="center">
